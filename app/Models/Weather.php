@@ -482,7 +482,12 @@ class Weather extends Model
             }
         }
 
-        clock()->debug($forecast);
+        // Vercel対応: stderrまたはerrorlogに出力
+        if (config('app.env') === 'production') {
+            \Log::debug('Weather Forecast Debug', ['forecast' => $forecast]);
+        } else {
+            clock()->debug($forecast);
+        }
 
         return $forecast;
     }
@@ -612,7 +617,12 @@ class Weather extends Model
             }
         }
 
-        clock()->debug($temperature);
+        // Vercel対応: stderrまたはerrorlogに出力
+        if (config('app.env') === 'production') {
+            \Log::debug('Weather Temperature Debug', ['temperature' => $temperature]);
+        } else {
+            clock()->debug($temperature);
+        }
 
         return $temperature;
     }
@@ -744,7 +754,12 @@ class Weather extends Model
             }
         }
 
-        clock()->debug($chanceofrain);
+        // Vercel対応: stderrまたはerrorlogに出力
+        if (config('app.env') === 'production') {
+            \Log::debug('Weather ChanceOfRain Debug', ['chanceofrain' => $chanceofrain]);
+        } else {
+            clock()->debug($chanceofrain);
+        }
 
         return $chanceofrain;
     }

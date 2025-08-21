@@ -50,7 +50,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => env('APP_ENV') === 'production' ? ['stderr'] : ['single'],
             'ignore_exceptions' => false,
         ],
 
@@ -93,6 +93,12 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
+        ],
+
+        'vercel' => [
+            'driver' => 'stack',
+            'channels' => ['stderr', 'errorlog'],
+            'ignore_exceptions' => false,
         ],
 
         'syslog' => [
