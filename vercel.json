@@ -1,7 +1,7 @@
 {
     "version": 2,
     "functions": {
-        "api/index.php": {
+        "api/*.php": {
             "runtime": "vercel-php@0.6.0"
         }
     },
@@ -10,5 +10,10 @@
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
-    ]
+    ],
+    "build": {
+        "env": {
+            "APP_ENV": "production"
+        }
+    }
 }
