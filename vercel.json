@@ -1,18 +1,17 @@
 {
     "version": 2,
     "functions": {
-        "api/index.php": {
+        "public/index.php": {
             "runtime": "vercel-php@0.6.0"
         }
     },
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/api/index.php"
+            "dest": "/public/index.php"
         }
     ],
     "env": {
-        "APP_ENV": "production",
-        "APP_NAME": "Weather API"
+        "APP_ENV": "production"
     }
 }
