@@ -42,7 +42,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapVercelRoutes();
         } else {
             $this->routes(function () {
-                Route::prefix('api')
+                Route::prefix('apis')
                     ->middleware('api')
                     ->namespace($this->namespace)
                     ->group(__DIR__.'/../../routes/api.php');
@@ -57,7 +57,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapVercelRoutes()
     {
         // API routes
-        Route::prefix('api')
+        Route::prefix('apis')
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(function () {

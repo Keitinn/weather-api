@@ -224,7 +224,7 @@
         <div>
           <p>
             JSON データをリクエストする際のベースとなる URL は以下になります。<br>
-            <span style="color:#d00;"><strong>{{ config('app.url') }}/api/forecast</strong></span><br>
+            <span style="color:#d00;"><strong>{{ config('app.url') }}/apis/forecast</strong></span><br>
             この URL に下の表のパラメータを加え、実際にリクエストします。
           </p>
 
@@ -248,11 +248,11 @@
               下記 URL にアクセスして JSON データを取得します。http:// でのアクセスも可能です。<br>
               基本 URL + 久留米の ID (400040)
             </div>
-            <a href="{{ config('app.url') }}/api/forecast/city/400040" target="_blank">{{ config('app.url') }}/api/forecast/city/400040</a>
+            <a href="{{ config('app.url') }}/apis/forecast/city/400040" target="_blank">{{ config('app.url') }}/apis/forecast/city/400040</a>
             <div>
               クエリで取得することもできます。
             </div>
-            <a href="{{ config('app.url') }}/api/forecast?city=400040" target="_blank">{{ config('app.url') }}/api/forecast?city=400040</a>
+            <a href="{{ config('app.url') }}/apis/forecast?city=400040" target="_blank">{{ config('app.url') }}/apis/forecast?city=400040</a>
           </div>
         </div>
       </div>
