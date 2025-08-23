@@ -6,6 +6,10 @@
             "use": "vercel-php@0.7.3"
         },
         {
+            "src": "/public/index.php",
+            "use": "vercel-php@0.7.3"
+        },
+        {
             "src": "/public/**",
             "use": "@vercel/static"
         }
@@ -17,10 +21,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/public/index.php",
-            "headers": {
-                "Content-Type": "text/html; charset=utf-8"
-            }
+            "dest": "/public/index.php"
         }
     ],
     "env": {
