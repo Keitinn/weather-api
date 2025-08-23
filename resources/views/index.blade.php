@@ -43,7 +43,7 @@
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-    gtag('config', '{{ config('app.gtag') }}');
+    gtag('config', "{{ config('app.gtag') }}");
 
     $(function(){
       $('a[href^="#"]').click(function(){

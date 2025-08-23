@@ -1,38 +1,40 @@
 {
-    "regions": ["hnd1"],
+    "version": 2,
+    "regions": [
+        "hnd1"
+    ],
     "builds": [
         {
-            "src": "/api/index.php",
-            "use": "vercel-php@0.7.3"
+            "src": "api/index.php",
+            "use": "vercel-php@0.6.2"
         },
         {
-            "src": "/public/index.php",
-            "use": "vercel-php@0.7.3"
-        },
-        {
-            "src": "/public/**",
-            "use": "@vercel/static"
+            "src": "public/**",
+            "use": "vercel-php@0.6.2"
         }
     ],
     "routes": [
         {
-            "src": "/apis/(.*)",
-            "dest": "/api/index.php"
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
         },
         {
             "src": "/(.*)",
-            "dest": "/public/index.php"
+            "dest": "api/index.php"
         }
     ],
     "env": {
         "APP_NAME": "Wether-API",
         "APP_DEBUG": "false",
-        "APP_BASE_PATH": "/var/task/user",
-        "APP_CONFIG_CACHE": "",
-        "APP_EVENTS_CACHE": "",
-        "APP_PACKAGES_CACHE": "",
-        "APP_ROUTES_CACHE": "",
-        "APP_SERVICES_CACHE": "",
+        "APP_ENV": "production",
+        "APP_URL": "https://weather-api-tau-topaz.vercel.app",
+        "SESSION_SECURE_COOKIE": "true",
+        "SANCTUM_STATEFUL_DOMAINS": "https://weather-api-tau-topaz.vercel.app",
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
         "CACHE_DRIVER": "array",
         "CACHE_STORE": "array",
         "LOG_CHANNEL": "stderr",
