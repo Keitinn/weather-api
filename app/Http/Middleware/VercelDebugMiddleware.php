@@ -20,6 +20,8 @@ class VercelDebugMiddleware
             'url' => $request->url(),
             'method' => $request->method(),
             'path' => $request->path(),
+            'fullUrl' => $request->fullUrl(),
+            'route' => $request->route() ? $request->route()->uri : 'no route found',
             'headers' => $request->headers->all(),
             'query' => $request->query(),
             'server' => [

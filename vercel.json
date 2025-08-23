@@ -17,7 +17,10 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/public/index.php"
+            "dest": "/public/index.php",
+            "headers": {
+                "Content-Type": "text/html; charset=utf-8"
+            }
         }
     ],
     "env": {
@@ -26,7 +29,7 @@
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
-        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_ROUTES_CACHE": "",
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "CACHE_DRIVER": "array",
         "CACHE_STORE": "array",
