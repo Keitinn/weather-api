@@ -16,7 +16,7 @@
     ],
     "routes": [
         {
-            "src": "/api/(.*)",
+            "src": "/apis/(.*)",
             "dest": "/api/index.php"
         },
         {
@@ -27,6 +27,7 @@
     "env": {
         "APP_NAME": "Wether-API",
         "APP_DEBUG": "false",
+        "APP_BASE_PATH": "/var/task/user",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
