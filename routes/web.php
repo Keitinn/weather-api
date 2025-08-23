@@ -16,7 +16,3 @@ use App\Http\Controllers as Controllers;
 Route::get('/', function () {
     return view('index');
 });
-
-// Forecast
-Route::get('/api/forecast', [Controllers\ForecastController::class, 'index_query']);
-Route::get('/api/forecast/city/{city_id}', [Controllers\ForecastController::class, 'index']);
