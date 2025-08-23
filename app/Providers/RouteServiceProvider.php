@@ -36,17 +36,62 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
+        
+        // Vercel環境では手動でルートを登録
+        if (app()->environment('production')) {
+            $this->mapVercelRoutes();
+        } else {
+            $this->routes(function () {
+                Route::prefix('apis')
+                    ->middleware('api')
+                    ->namespace($this->namespace)
+                    ->group(__DIR__.'/../../routes/api.php');
 
-        $this->routes(function () {
-            Route::prefix('apis')
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(__DIR__.'/../../routes/api.php');
+                Route::middleware('web')
+                    ->namespace($this->namespace)
+                    ->group(__DIR__.'/../../routes/web.php');
+            });
+        }
+    }
 
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(__DIR__.'/../../routes/web.php');
-        });
+    protected function mapVercelRoutes()
+    {
+        // API routes
+        Route::prefix('apis')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(function () {
+                Route::get('/debug', function () {
+                    return response()->json([
+                        'status' => 'API is working',
+                        'timestamp' => now()->toISOString(),
+                        'server_info' => [
+                            'REQUEST_URI' => request()->server('REQUEST_URI'),
+                            'PATH_INFO' => request()->server('PATH_INFO'),
+                            'SCRIPT_NAME' => request()->server('SCRIPT_NAME'),
+                            'HTTP_HOST' => request()->server('HTTP_HOST'),
+                        ],
+                        'request_info' => [
+                            'url' => request()->url(),
+                            'full_url' => request()->fullUrl(),
+                            'path' => request()->path(),
+                            'method' => request()->method(),
+                        ]
+                    ], 200, [], JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+                });
+                
+                Route::get('/forecast', [\App\Http\Controllers\ForecastController::class, 'index_query']);
+                Route::get('/forecast/city/{city_id}', [\App\Http\Controllers\ForecastController::class, 'index']);
+            });
+
+        // Web routes
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(function () {
+                Route::get('/', function () {
+                    return view('index');
+                });
+            });
     }
 
     /**
